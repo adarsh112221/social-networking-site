@@ -59,7 +59,7 @@ class PostsList extends  React.Component {
         );
       }
 }
-PostsList.PropTypes={
+PostsList.propTypes={
     posts:PropTypes.array.isRequired
 }
 
