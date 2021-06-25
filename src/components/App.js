@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/posts';
-import { PostsList,Navbar,Home,Page404} from './';
+import { PostsList,Navbar,Home,Page404,Login,Signup} from './';
 import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Link, Route,Switch} from 'react-router-dom';
 // const Home = () => <div>Home</div>;
-const Login = () => <div>Login</div>;
-const Signup = () => <div>Signup</div>;
+// const Login = () => <div>Login</div>;
+// const Signup = () => <div>Signup</div>;
 class App extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchPosts());
