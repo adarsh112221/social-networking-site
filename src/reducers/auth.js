@@ -7,6 +7,7 @@ import {
     SIGNUP_START,
     SIGNUP_SUCCESS,
     SIGNUP_FAILED,
+    CLEAR_AUTH_STATE,
   } from '../actions/actionTypes';
   
   const initialAuthState = {
@@ -52,6 +53,11 @@ import {
           user: {},
           isLoggedin: false,
         };
+        case CLEAR_AUTH_STATE:
+          return{
+            ...state,
+            error:null
+          }
       default:
         return state;
     }
