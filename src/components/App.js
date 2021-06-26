@@ -5,6 +5,7 @@ import { PostsList,Navbar,Home,Page404,Login,Signup} from './';
 import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Link, Route,Switch} from 'react-router-dom';
 import * as jwtDecode from 'jwt-decode';
+import { authenticateUser } from '../actions/auth';
 // const Home = () => <div>Home</div>;
 // const Login = () => <div>Login</div>;
 // const Signup = () => <div>Signup</div>;
@@ -14,7 +15,12 @@ class App extends React.Component {
     const token=localStorage.getItem('token');
     if(token)
     {
-      const user=jwtDecode(token)
+      const user=jwtDecode(token);
+      this.props.dispatch(authenticateUser({
+        email:user.email,
+        _id:user._id,
+        name:user.name,
+      }))
     }
   }
 
