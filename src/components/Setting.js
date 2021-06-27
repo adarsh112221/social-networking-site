@@ -6,11 +6,16 @@ class Setting extends Component {
     {
         super(props)
         this.state={
-            name:'',
+            name:props.auth.user.name,
             password:'',
             confirmPassword:'',
             editMode:false,
         };
+    }
+    handleChange=(feildname,val)=>{
+        this.setState({
+            [feildname]:val
+        })
     }
     render() {
         const{user}=this.props.auth;
@@ -30,7 +35,7 @@ class Setting extends Component {
 
         <div className="field">
         <div classname="field-label">name</div>
-        {editMode?(<input type="text" onChange={()=>this.handleChange()} value={this.state.name}/>):(<div classname="field-value">{user.name}</div>) }
+        {editMode?(<input type="text" onChange={(e)=>this.handleChange('name',e.target.value)} value={this.state.name}/>):(<div classname="field-value">{user.name}</div>) }
         </div>
          
         {editMode && (
@@ -39,7 +44,7 @@ class Setting extends Component {
 
             <input
               type="password"
-              onChange={() => this.handleChange()}
+              onChange={() => this.handleChange('password',e.target.value)}
               value={this.state.password}
             />
           </div>
@@ -50,7 +55,7 @@ class Setting extends Component {
 
             <input
               type="password"
-              onChange={() => this.handleChange()}
+              onChange={() => this.handleChange('confirmPassword',e.target.value)}
               value={this.state.confirmPassword}
             />
           </div>
@@ -59,10 +64,10 @@ class Setting extends Component {
           {editMode ? (
             <button className="button save-btn">Save</button>
           ) : (
-            <button className="button edit-btn">Edit profile</button>
+            <button className="button edit-btn" onClick={()=>this.handleChange('editMode',true)}>Edit profile</button>
           )}
 
-          {editMode && <div className="go-back">Go back</div>}
+          {editMode && <div className="go-back" onClick={()=>this.handleChange('editMode',false)}>Go back</div>}
         </div>
                 
         </div>
