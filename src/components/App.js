@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import * as jwtDecode from 'jwt-decode';
 import { authenticateUser } from '../actions/auth';
+import UserProfile from './UserProfile';
 // const Home = () => <div>Home</div>;
 // const Login = () => <div>Login</div>;
 // const Signup = () => <div>Signup</div>;
@@ -64,6 +65,11 @@ class App extends React.Component {
             <PrivateRoute
               path="/settings"
               component={Settings}
+              isLoggedin={auth.isLoggedin}
+            />
+             <PrivateRoute
+              path="/user"
+              component={UserProfile}
               isLoggedin={auth.isLoggedin}
             />
             <Route component={Page404} />
