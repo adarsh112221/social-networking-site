@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { clearAuthState } from '../actions/auth';
 
 class Setting extends Component {
     constructor(props)
@@ -17,8 +18,17 @@ class Setting extends Component {
             [feildname]:val
         })
     }
+    handleSave=()=>
+    {
+      const{password,confirmPassword,name}=this.state
+       const{user}=this.props.auth;
+       this.props.dispatch(editUser(name, password, confirmPassword, user._id));
+    }
+    componentWillUnmount() {
+      this.props.dispatch(clearAuthState());
+    }
     render() {
-        const{user}=this.props.auth;
+        const{user,error}=this.props.auth;
         const{editMode}=this.state;
         return (
             <div className="settings">
@@ -28,11 +38,13 @@ class Setting extends Component {
             alt="user-dp"
           />
         </div>
+        {error&&<div className="alert error-dailog">{error}</div>}
+        {error===false&&(<div className="alert success-dailog">Sucessfully Updated Profile</div>)}
         <div className="field">
           <div classname="field-label">Email</div>
           <div classname="field-value">{user.email}</div>
         </div>
-
+        
         <div className="field">
         <div classname="field-label">name</div>
         {editMode?(<input type="text" onChange={(e)=>this.handleChange('name',e.target.value)} value={this.state.name}/>):(<div classname="field-value">{user.name}</div>) }
@@ -62,7 +74,7 @@ class Setting extends Component {
         )}
              <div className="btn-grp">
           {editMode ? (
-            <button className="button save-btn">Save</button>
+            <button className="button save-btn" onClick={this.handleSave}>Save</button>
           ) : (
             <button className="button edit-btn" onClick={()=>this.handleChange('editMode',true)}>Edit profile</button>
           )}
@@ -81,5 +93,3 @@ function mapStateToProps({auth})
     }
 }
 export default connect(mapStateToProps)(Setting);
-
-// export default Setting;
