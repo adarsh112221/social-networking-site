@@ -7,6 +7,7 @@ class Home extends Component {
         return (
             <div className="home">
                 <PostsList posts={posts}/>
+                {isLoggedin && <FriendsList friends={friends} />}
             </div>
         );
     }

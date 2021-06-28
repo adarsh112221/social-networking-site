@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import * as jwtDecode from 'jwt-decode';
 import { authenticateUser } from '../actions/auth';
 import UserProfile from './UserProfile';
+import { fetchUserFriends } from '../actions/friends';
 // const Home = () => <div>Home</div>;
 // const Login = () => <div>Login</div>;
 // const Signup = () => <div>Signup</div>;
@@ -42,6 +43,7 @@ class App extends React.Component {
         })
       );
     }
+    this.props.dispatch(fetchUserFriends());
   }
 
   render() {
@@ -57,7 +59,7 @@ class App extends React.Component {
               exact
               path="/"
               render={(props) => {
-                return <Home {...props} posts={posts} />;
+                return <Home {...props}  friends={friends} isLoggedin={auth.isLoggedin} posts={posts} />;
               }}
             />
             <Route path="/login" component={Login} />
@@ -86,6 +88,8 @@ App.propTypes = {
 function mapStateToProps(state) {
   return {
     posts: state.posts,
+    auth:state.auth,
+    friends:state.friends
   };
 }
 export default connect(mapStateToProps)(App);
