@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types'
+import {Link} from 'react-router-dom'
 class PostsList extends  React.Component {
     render() {
         const { posts } = this.props;

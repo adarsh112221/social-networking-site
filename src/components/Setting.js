@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { clearAuthState } from '../actions/auth';
+import { clearAuthState, editUser } from '../actions/auth';
 
 class Setting extends Component {
     constructor(props)
@@ -56,7 +56,7 @@ class Setting extends Component {
 
             <input
               type="password"
-              onChange={() => this.handleChange('password',e.target.value)}
+              onChange={(e) => this.handleChange('password',e.target.value)}
               value={this.state.password}
             />
           </div>
@@ -67,7 +67,7 @@ class Setting extends Component {
 
             <input
               type="password"
-              onChange={() => this.handleChange('confirmPassword',e.target.value)}
+              onChange={(e) => this.handleChange('confirmPassword',e.target.value)}
               value={this.state.confirmPassword}
             />
           </div>

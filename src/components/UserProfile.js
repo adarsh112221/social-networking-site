@@ -60,7 +60,7 @@ class UserProfile extends Component {
         );
       }
 }
-function mapStateToProps({ profile }) {
+function mapStateToProps({ profile,friends }) {
   return {
     profile,
     friends,

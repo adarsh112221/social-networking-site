@@ -1,6 +1,6 @@
 import { APIUrls } from '../helpers/urls';
 import { FETCH_USER_PROFILE, USER_PROFILE_SUCCESS } from "./actionTypes";
-
+import { getAuthTokenFromLocalStorage } from '../helpers/utils';
 export function startUserProfileFetch()
 {
     return{

@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import * as jwtDecode from 'jwt-decode';
 import { authenticateUser } from '../actions/auth';
 import UserProfile from './UserProfile';
+import { Redirect } from 'react-router';
 import { fetchUserFriends } from '../actions/friends';
 // const Home = () => <div>Home</div>;
 // const Login = () => <div>Login</div>;
@@ -47,7 +48,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { posts } = this.props;
+    const { posts,auth,friends} = this.props;
     console.log('Props', this.props);
     return (
       <Router>
