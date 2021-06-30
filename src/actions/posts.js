@@ -1,6 +1,6 @@
 import { APIUrls } from '../helpers/urls';
 import { getAuthTokenFromLocalStorage, getFormBody } from '../helpers/utils';             
-import {ADD_POST, UPDATE_POSTS} from './actionTypes'
+import {ADD_COMMENT, ADD_POST, UPDATE_POSTS} from './actionTypes'
 export function fetchPosts()
 {
     return(dispatch)=>
@@ -47,4 +47,27 @@ export function createPost(content)
             }
         })
 }
+}
+export function createComment(content,postId)
+{
+    return (dispatch)=>{
+        const url=APIUrls.createComment();
+        fetch(url,{
+            method:'POST',
+            header:{
+                'Content-Type':'application/x-www-form-urlencoded',
+                Authorization:`Bearer${getAuthTokenFromLocalStorage()}`
+            },
+            body:getFormBody({content,post_id:postId}).then((response)=>response.json()).then((data)=>{
+                if(data.success)
+                dispatch(addComment(data.data.comment,postId))
+            })
+        })
+    }
+}
+export function addComment(comment,postId){
+    return{
+        type:ADD_COMMENT,
+        comment,postId
+    }
 }

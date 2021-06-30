@@ -8,4 +8,6 @@ import Signup from './Signup';
 import Settings from './Setting';
 import UserProfile from './UserProfile';
 import CreatePost from './CreatePost';
-export { CreatePost,UserProfile,Settings,PostsList, App, Navbar, Home, Page404, Login, Signup };
+import Posts from './Posts';
+import Comment from './Comment';
+export { Comment,Posts,CreatePost,UserProfile,Settings,PostsList, App, Navbar, Home, Page404, Login, Signup };
