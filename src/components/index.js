@@ -7,4 +7,5 @@ import Login from './Login';
 import Signup from './Signup';
 import Settings from './Setting';
 import UserProfile from './UserProfile';
-export { UserProfile,Settings,PostsList, App, Navbar, Home, Page404, Login, Signup };
+import CreatePost from './CreatePost';
+export { CreatePost,UserProfile,Settings,PostsList, App, Navbar, Home, Page404, Login, Signup };
