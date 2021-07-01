@@ -9,7 +9,7 @@ class Chat extends Component {
       message: [], //{content:'some message',self:true}
       typedMessage: '',
     };
-    this.socket = io.connect;
+    this.socket = io.connect('http://54.237.158.65:5000);
     this.userEmail = props.user.email;
     if (this.userEmail) {
       this.setupConnections();
