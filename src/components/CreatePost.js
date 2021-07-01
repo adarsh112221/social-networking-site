@@ -21,7 +21,7 @@ class CreatePost extends Component {
     render() {
         return (
             <div className="create-post">
-                <textarea value={this.getSnapshotBeforeUpdate.content} className="add-post" onChange={this.handleChange}/>
+                <textarea value={this.state.content} className="add-post" onChange={this.handleChange}/>
                 <div>
                     <button id="add-post-btn" onClick={this.handleOnClick}>Add Post
                     </button>
