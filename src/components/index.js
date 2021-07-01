@@ -10,4 +10,5 @@ import UserProfile from './UserProfile';
 import CreatePost from './CreatePost';
 import Posts from './Posts';
 import Comment from './Comment';
-export { Comment,Posts,CreatePost,UserProfile,Settings,PostsList, App, Navbar, Home, Page404, Login, Signup };
+import Chat from './Chat'
+export {Chat,Comment,Posts,CreatePost,UserProfile,Settings,PostsList, App, Navbar, Home, Page404, Login, Signup };
