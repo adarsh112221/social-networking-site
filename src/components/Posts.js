@@ -17,7 +17,7 @@ class Posts extends Component {
         })
     }
     handleAddComment=(e)=>{
-        const{comment}=this.dispatch;
+        const{comment}=this.state;
         const{post}=this.props
         if(e.key=='enter'){
             this.props.dispatch(createComment(comment,post._id))
