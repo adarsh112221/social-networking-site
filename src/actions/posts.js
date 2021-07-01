@@ -1,6 +1,6 @@
 import { APIUrls } from '../helpers/urls';
 import { getAuthTokenFromLocalStorage, getFormBody } from '../helpers/utils';             
-import {ADD_COMMENT, ADD_POST, UPDATE_POSTS} from './actionTypes'
+import {ADD_COMMENT, ADD_POST, UPDATE_POSTS, UPDATE_POST_LIKE} from './actionTypes'
 export function fetchPosts()
 {
     return(dispatch)=>
@@ -31,7 +31,7 @@ export function addPost(post)
 export function createPost(content)
 {
     return (dispatch)=>{
-        const url=APIUrls.createPost;
+        const url=APIUrls.createPost();
         fetch(url,{
             method:'POST',
             header:{
@@ -83,6 +83,7 @@ export function addLike(id,likeType,userId)
         }).then(response=>response.json()).then((data)=>{console.log('like.data',data)
         if(data.success)
         {
+            if(likeType=='Post')
         dispatch(addLikeToStore(id,userId))
         }
     })
@@ -91,6 +92,6 @@ export function addLike(id,likeType,userId)
 export function addLikeToStore(postId,userId)
 {
     return {
-        type:updatePosts,postId,userId
+        type:UPDATE_POST_LIKE,postId,userId
     }
 }

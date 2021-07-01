@@ -32,7 +32,7 @@ class Posts extends Component {
   render() {
     const { post,user} = this.props;
     const { comment } = this.state;
-    const isPOstLIkedByUser=post.likes.includes(post._id)
+    const isPostLikedByUser = post.likes.includes(user._id);
     return (
       <div className="post-wrapper" key={post._id}>
         <div className="post-header">
@@ -49,10 +49,10 @@ class Posts extends Component {
             </div>
           </div>
           <div className="post-content">{post.content}</div>
- 
+
           <div className="post-actions">
             <button className="post-like no-btn" onClick={this.handlePostLike}/>
-            {isPOstLIkedByUser?<img
+            {isPostLikedByUser?<img
                 src="https://image.flaticon.com/icons/svg/1076/1076984.svg"
                 alt="likes-icon"
               />:<img
@@ -108,4 +108,4 @@ function mapStateToProps({auth})
     user:auth.user,
   }
 }
-export default connect()(Post);
+export default connect(mapStateToProps)(Post);
