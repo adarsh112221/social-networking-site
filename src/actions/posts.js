@@ -58,16 +58,39 @@ export function createComment(content,postId)
                 'Content-Type':'application/x-www-form-urlencoded',
                 Authorization:`Bearer${getAuthTokenFromLocalStorage()}`
             },
-            body:getFormBody({content,post_id:postId}).then((response)=>response.json()).then((data)=>{
+            body:getFormBody({content,post_id:postId})
+        }).then((response)=>response.json()).then((data)=>{
                 if(data.success)
                 dispatch(addComment(data.data.comment,postId))
             })
-        })
+        }
     }
-}
 export function addComment(comment,postId){
     return{
         type:ADD_COMMENT,
         comment,postId
+    }
+}
+export function addLike(id,likeType,userId)
+{
+    return (dispatch)=>{
+        const url=APIUrls.toggleLike(id,likeType);
+        fetch(url,{method:'POST',
+        header:{
+            'Content-Type':'application/x-www-form-urlencoded',
+            Authorization:`Bearer${getAuthTokenFromLocalStorage()}`
+        }
+        }).then(response=>response.json()).then((data)=>{console.log('like.data',data)
+        if(data.success)
+        {
+        dispatch(addLikeToStore(id,userId))
+        }
+    })
+    }
+}
+export function addLikeToStore(postId,userId)
+{
+    return {
+        type:updatePosts,postId,userId
     }
 }
