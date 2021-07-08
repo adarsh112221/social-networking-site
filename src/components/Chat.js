@@ -78,7 +78,7 @@ class Chat extends Component {
           {messages.map((message) => (
             <div
               className={
-                messages.self
+                message.self
                   ? 'chat-bubble self-chat'
                   : 'chat-bubble other-chat'
               }
